@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una misión especial ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(220, 25, 45, .35),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #08090d,
+      #16070b 55%,
+      #050507
+    );
+}
+
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  opacity: .13;
+  pointer-events: none;
+
+  background-image:
+    radial-gradient(#fff 1px, transparent 1px);
+
+  background-size: 24px 24px;
+}
+
+.card {
+  width: min(92vw, 650px);
+  padding: 42px 28px;
+  text-align: center;
+  position: relative;
+
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 28px;
+
+  background: rgba(8,8,12,.88);
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.65);
+
+  backdrop-filter: blur(10px);
+}
+
+.badge {
+  font-size: 13px;
+  letter-spacing: 4px;
+  color: #ff4353;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero {
+  font-size: 64px;
+  margin: 0 0 8px;
+
+  text-shadow:
+    0 0 25px rgba(255,40,60,.45);
+}
+
+h1 {
+  font-size: clamp(28px, 7vw, 48px);
+  line-height: 1.05;
+  margin: 8px 0 18px;
+}
+
+p {
+  font-size: 18px;
+  color: #c9c9cf;
+  line-height: 1.5;
+
+  margin: 0 auto 30px;
+  max-width: 480px;
+}
+
+.question {
+  font-size: clamp(24px, 6vw, 38px);
+  font-weight: 900;
+  margin: 15px 0 28px;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+
+  padding: 16px 34px;
+
+  font-size: 18px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition: .2s;
+
+  min-width: 145px;
+}
+
+#yes {
+  background: #e6243f;
+  color: #fff;
+
+  box-shadow:
+    0 8px 25px rgba(230,36,63,.35);
+}
+
+#yes:hover {
+  transform: translateY(-3px) scale(1.03);
+}
+
+#no {
+  background: #24262d;
+  color: #fff;
+
+  border: 1px solid #444;
+}
+
+#no:hover {
+  transform: translateY(-2px);
+}
+
+.success {
+  animation: pop .55s ease;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+
+  font-size: 25px;
+
+  animation:
+    float 3s linear forwards;
+
+  pointer-events: none;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(.7);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  to {
+    transform:
+      translateY(-110vh)
+      rotate(25deg);
+
+    opacity: 0;
+  }
+}
+
+@media(max-width:500px) {
+
+  .card {
+    padding: 35px 20px;
+  }
+
+  .hero {
+    font-size: 52px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<main class="card" id="card">
+
+  <div class="badge">
+    UNA MISIÓN ESPECIAL
+  </div>
+
+  <div class="hero">
+    🦸‍♂️
+  </div>
+
+  <h1>
+    Hay algo que necesito preguntarte...
+  </h1>
+
+  <p>
+    He estado preparando esta pequeña misión
+    y solamente tú puedes darme la respuesta.
+  </p>
+
+  <div class="question">
+    ¿Quieres salir conmigo el domingo? ❤️
+  </div>
+
+  <div class="buttons">
+
+    <button id="yes">
+      SÍ ❤️
+    </button>
+
+    <button id="no">
+      NO 😭
+    </button>
+
+  </div>
+
+</main>
+
+
+<script>
+
+const yes = document.getElementById("yes");
+const no = document.getElementById("no");
+
+const card = document.getElementById("card");
+
+let attempts = 0;
+
+
+/* BOTÓN SÍ */
+
+yes.addEventListener("click", () => {
+
+  card.innerHTML = `
+
+    <div class="badge">
+      MISIÓN COMPLETADA
+    </div>
+
+    <div class="hero">
+      ❤️
+    </div>
+
+    <h1>
+      ¡SABÍA QUE DIRÍAS QUE SÍ!
+    </h1>
+
+    <p>
+      Entonces tenemos una misión pendiente...
+    </p>
+
+    <div class="question">
+      Nos vemos el domingo 🫶
+    </div>
+
+  `;
+
+  card.classList.add("success");
+
+
+  /* Corazones */
+
+  for (let i = 0; i < 35; i++) {
+
+    setTimeout(() => {
+
+      const h = document.createElement("div");
+
+      h.className = "heart";
+
+      h.textContent =
+        ["❤️","💖","💕","✨"]
+        [Math.floor(Math.random() * 4)];
+
+      h.style.left =
+        Math.random() * 100 + "vw";
+
+      h.style.animationDuration =
+        (2 + Math.random() * 2) + "s";
+
+      document.body.appendChild(h);
+
+      setTimeout(() => {
+        h.remove();
+      }, 4500);
+
+    }, i * 70);
+
+  }
+
+});
+
+
+/* BOTÓN NO */
+
+no.addEventListener("click", () => {
+
+  attempts++;
+
+  if (attempts < 4) {
+
+    no.textContent =
+      [
+        "¿Segura? 👀",
+        "Piénsalo otra vez 😭",
+        "Última oportunidad 👀",
+        "Bueno... 😭"
+      ][attempts - 1];
+
+    no.style.transform =
+      `translate(
+        ${(Math.random() * 120) - 60}px,
+        ${(Math.random() * 70) - 35}px
+      )`;
+
+  } else {
+
+    no.textContent =
+      "Está bien 😭❤️";
+
+    no.style.transform =
+      "none";
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
