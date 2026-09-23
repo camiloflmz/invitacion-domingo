@@ -6,358 +6,254 @@
 <title>Una misión especial ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  overflow: hidden;
-
-  background:
-    radial-gradient(
-      circle at 50% 15%,
-      rgba(220, 25, 45, .35),
-      transparent 30%
-    ),
-    linear-gradient(
-      135deg,
-      #08090d,
-      #16070b 55%,
-      #050507
-    );
+body{
+    background:black;
+    color:white;
+    overflow:hidden;
 }
 
-body:before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  opacity: .13;
-  pointer-events: none;
-
-  background-image:
-    radial-gradient(#fff 1px, transparent 1px);
-
-  background-size: 24px 24px;
+.screen{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
 }
 
-.card {
-  width: min(92vw, 650px);
-  padding: 42px 28px;
-  text-align: center;
-  position: relative;
-
-  border: 1px solid rgba(255,255,255,.18);
-  border-radius: 28px;
-
-  background: rgba(8,8,12,.88);
-
-  box-shadow:
-    0 25px 80px rgba(0,0,0,.65);
-
-  backdrop-filter: blur(10px);
+.hidden{
+    display:none;
 }
 
-.badge {
-  font-size: 13px;
-  letter-spacing: 4px;
-  color: #ff4353;
-  font-weight: 800;
-  margin-bottom: 20px;
+.logo{
+    font-size:clamp(30px,8vw,70px);
+    font-weight:900;
+    color:#ff2b45;
+    letter-spacing:4px;
+    animation:glow 2s infinite alternate;
 }
 
-.hero {
-  font-size: 64px;
-  margin: 0 0 8px;
-
-  text-shadow:
-    0 0 25px rgba(255,40,60,.45);
+.subtitle{
+    margin-top:20px;
+    color:#ddd;
+    font-size:22px;
 }
 
-h1 {
-  font-size: clamp(28px, 7vw, 48px);
-  line-height: 1.05;
-  margin: 8px 0 18px;
+@keyframes glow{
+    from{
+        text-shadow:0 0 10px red;
+    }
+    to{
+        text-shadow:
+            0 0 20px red,
+            0 0 40px red,
+            0 0 70px red;
+    }
 }
 
-p {
-  font-size: 18px;
-  color: #c9c9cf;
-  line-height: 1.5;
-
-  margin: 0 auto 30px;
-  max-width: 480px;
+.countdown{
+    font-size:80px;
+    margin-top:30px;
 }
 
-.question {
-  font-size: clamp(24px, 6vw, 38px);
-  font-weight: 900;
-  margin: 15px 0 28px;
+.card{
+    background:rgba(15,15,20,0.95);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:25px;
+    padding:40px;
+    width:min(90%,650px);
+    box-shadow:0 0 40px rgba(255,0,0,0.2);
 }
 
-.buttons {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
+.question{
+    font-size:clamp(28px,6vw,45px);
+    margin-bottom:35px;
 }
 
-button {
-  border: 0;
-  border-radius: 14px;
-
-  padding: 16px 34px;
-
-  font-size: 18px;
-  font-weight: 900;
-
-  cursor: pointer;
-
-  transition: .2s;
-
-  min-width: 145px;
+.buttons{
+    display:flex;
+    gap:20px;
+    justify-content:center;
+    flex-wrap:wrap;
 }
 
-#yes {
-  background: #e6243f;
-  color: #fff;
-
-  box-shadow:
-    0 8px 25px rgba(230,36,63,.35);
+button{
+    border:none;
+    padding:16px 35px;
+    border-radius:15px;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-#yes:hover {
-  transform: translateY(-3px) scale(1.03);
+#yes{
+    background:#e6243f;
+    color:white;
 }
 
-#no {
-  background: #24262d;
-  color: #fff;
-
-  border: 1px solid #444;
+#no{
+    background:#333;
+    color:white;
 }
 
-#no:hover {
-  transform: translateY(-2px);
+.heart{
+    position:fixed;
+    bottom:-20px;
+    font-size:30px;
+    animation:float 4s linear forwards;
 }
 
-.success {
-  animation: pop .55s ease;
-}
-
-.heart {
-  position: fixed;
-  bottom: -30px;
-
-  font-size: 25px;
-
-  animation:
-    float 3s linear forwards;
-
-  pointer-events: none;
-}
-
-@keyframes pop {
-  from {
-    transform: scale(.7);
-    opacity: 0;
-  }
-
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes float {
-  to {
-    transform:
-      translateY(-110vh)
-      rotate(25deg);
-
-    opacity: 0;
-  }
-}
-
-@media(max-width:500px) {
-
-  .card {
-    padding: 35px 20px;
-  }
-
-  .hero {
-    font-size: 52px;
-  }
-
-  p {
-    font-size: 16px;
-  }
-
-  button {
-    width: 100%;
-  }
-
-  .buttons {
-    gap: 10px;
-  }
+@keyframes float{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<main class="card" id="card">
+<!-- INTRO -->
+<div class="screen" id="intro1">
+    <div class="logo">UNA PRODUCCIÓN ESPECIAL</div>
+</div>
 
-  <div class="badge">
-    UNA MISIÓN ESPECIAL
-  </div>
+<div class="screen hidden" id="intro2">
+    <div class="logo">MISIÓN IMPORTANTE</div>
+    <div class="subtitle">
+        Hay algo que necesito preguntarte...
+    </div>
+</div>
 
-  <div class="hero">
-    🦸‍♂️
-  </div>
+<div class="screen hidden" id="intro3">
+    <div class="countdown" id="count">3</div>
+</div>
 
-  <h1>
-    Hay algo que necesito preguntarte...
-  </h1>
+<!-- PREGUNTA -->
+<div class="screen hidden" id="main">
+    <div class="card">
+        <div class="question">
+            ¿Quieres salir conmigo el domingo? ❤️
+        </div>
 
-  <p>
-    He estado preparando esta pequeña misión
-    y solamente tú puedes darme la respuesta.
-  </p>
-
-  <div class="question">
-    ¿Quieres salir conmigo el domingo? ❤️
-  </div>
-
-  <div class="buttons">
-
-    <button id="yes">
-      SÍ ❤️
-    </button>
-
-    <button id="no">
-      NO 😭
-    </button>
-
-  </div>
-
-</main>
-
+        <div class="buttons">
+            <button id="yes">SÍ ❤️</button>
+            <button id="no">NO</button>
+        </div>
+    </div>
+</div>
 
 <script>
 
-const yes = document.getElementById("yes");
-const no = document.getElementById("no");
+// INTRO
 
-const card = document.getElementById("card");
+setTimeout(()=>{
+    intro1.classList.add("hidden");
+    intro2.classList.remove("hidden");
+},2500);
 
-let attempts = 0;
+setTimeout(()=>{
+    intro2.classList.add("hidden");
+    intro3.classList.remove("hidden");
+
+    let n=3;
+
+    let interval=setInterval(()=>{
+        n--;
+        count.textContent=n;
+
+        if(n==0){
+            clearInterval(interval);
+
+            setTimeout(()=>{
+                intro3.classList.add("hidden");
+                main.classList.remove("hidden");
+            },700);
+        }
+
+    },1000);
+
+},5000);
 
 
-/* BOTÓN SÍ */
+// BOTÓN SÍ
 
-yes.addEventListener("click", () => {
+yes.addEventListener("click",()=>{
 
-  card.innerHTML = `
-
-    <div class="badge">
-      MISIÓN COMPLETADA
+    main.innerHTML=`
+    <div class="card">
+        <h1 style="font-size:50px;">❤️</h1>
+        <h1>¡MISIÓN COMPLETADA!</h1>
+        <br>
+        <h2>Nos vemos el domingo 🫶</h2>
     </div>
+    `;
 
-    <div class="hero">
-      ❤️
-    </div>
+    for(let i=0;i<40;i++){
 
-    <h1>
-      ¡SABÍA QUE DIRÍAS QUE SÍ!
-    </h1>
+        setTimeout(()=>{
 
-    <p>
-      Entonces tenemos una misión pendiente...
-    </p>
+            let h=document.createElement("div");
 
-    <div class="question">
-      Nos vemos el domingo 🫶
-    </div>
+            h.className="heart";
 
-  `;
+            h.innerHTML=["❤️","💖","✨","💕"]
+            [Math.floor(Math.random()*4)];
 
-  card.classList.add("success");
+            h.style.left=Math.random()*100+"vw";
 
+            document.body.appendChild(h);
 
-  /* Corazones */
+            setTimeout(()=>{
+                h.remove();
+            },4000);
 
-  for (let i = 0; i < 35; i++) {
-
-    setTimeout(() => {
-
-      const h = document.createElement("div");
-
-      h.className = "heart";
-
-      h.textContent =
-        ["❤️","💖","💕","✨"]
-        [Math.floor(Math.random() * 4)];
-
-      h.style.left =
-        Math.random() * 100 + "vw";
-
-      h.style.animationDuration =
-        (2 + Math.random() * 2) + "s";
-
-      document.body.appendChild(h);
-
-      setTimeout(() => {
-        h.remove();
-      }, 4500);
-
-    }, i * 70);
-
-  }
+        },i*80);
+    }
 
 });
 
 
-/* BOTÓN NO */
+// BOTÓN NO
 
-no.addEventListener("click", () => {
+let attempts=0;
 
-  attempts++;
+no.addEventListener("click",()=>{
 
-  if (attempts < 4) {
+    attempts++;
 
-    no.textContent =
-      [
-        "¿Segura? 👀",
-        "Piénsalo otra vez 😭",
-        "Última oportunidad 👀",
-        "Bueno... 😭"
-      ][attempts - 1];
+    if(attempts<4){
 
-    no.style.transform =
-      `translate(
-        ${(Math.random() * 120) - 60}px,
-        ${(Math.random() * 70) - 35}px
-      )`;
+        no.style.transform=
+        `translate(
+            ${(Math.random()*120)-60}px,
+            ${(Math.random()*80)-40}px
+        )`;
 
-  } else {
+        no.innerText=[
+            "¿Segura? 👀",
+            "Piénsalo",
+            "Última oportunidad 👀"
+        ][attempts-1];
 
-    no.textContent =
-      "Está bien 😭❤️";
+    }else{
 
-    no.style.transform =
-      "none";
+        no.innerText="Está bien ❤️";
+        no.style.transform="none";
 
-  }
+    }
 
 });
-
 </script>
 
 </body>
